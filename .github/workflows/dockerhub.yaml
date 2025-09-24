@@ -25,4 +25,4 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/smash:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/smash:v${{ github.ref_name }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/smash:${{ github.ref_name }}
