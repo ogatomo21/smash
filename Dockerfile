@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo_sqlite mbstring \
     && a2enmod rewrite
 
-COPY . /var/www/html
+COPY src/ /var/www/html
 
 COPY docker/php.ini /usr/local/etc/php/
 COPY docker/init.sql /docker-entrypoint-initdb.d/init.sql
