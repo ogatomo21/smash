@@ -23,4 +23,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/smash:latest
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/smash:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/smash:v${{ github.ref_name }}
