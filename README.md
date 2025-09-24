@@ -39,6 +39,8 @@ docker compose up -d
 
 - [SwitchBot(Wonderlabs)](https://www.switchbot.jp/)
 - [SwitchBot API](https://github.com/OpenWonderLabs/SwitchBotAPI)
+- [Bulma](https://bulma.io/)
+- [Font Awesome](https://fontawesome.com/)
 - [IBM Plex Sans JP](https://fonts.google.com/specimen/IBM+Plex+Sans+JP)
 - [Poppins](https://fonts.google.com/specimen/Poppins)
 - [気象庁 Webサイト](https://www.jma.go.jp/jma/index.html)
