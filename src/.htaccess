@@ -1,0 +1,14 @@
+<Files ".env">
+    Require all denied
+</Files>
+
+<Files "composer.json">
+    Require all denied
+</Files>
+<Files "composer.lock">
+    Require all denied
+</Files>
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} ^/private/
+RewriteRule ^ - [R=404,L]

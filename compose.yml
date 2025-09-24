@@ -1,0 +1,28 @@
+services:
+  php:
+    build: ./docker/
+    container_name: smash_php
+    environment:
+      SQLITE_PATH: ${SQLITE_PATH}
+      JMA_AREA_CODE: ${JMA_AREA_CODE}
+      SB_API_TOKEN: ${SB_API_TOKEN}
+      SB_API_SECRET: ${SB_API_SECRET}
+      USE_SB_TEMPERATURE: ${USE_SB_TEMPERATURE}
+      SB_TEMPERATURE_ID: ${SB_TEMPERATURE_ID}
+      USE_SB_LOCK: ${USE_SB_LOCK}
+      SB_LOCK_ID: ${SB_LOCK_ID}
+      USE_SB_LIGHT: ${USE_SB_LIGHT}
+      SB_LIGHT_ID: ${SB_LIGHT_ID}
+      USE_SB_AC: ${USE_SB_AC}
+      SB_AC_ID: ${SB_AC_ID}
+      SB_AC_OFF_TWICE_RUN: ${SB_AC_OFF_TWICE_RUN}
+      TZ: Asia/Tokyo
+    volumes:
+      - smash-sqlite:/var/www/db/
+      - ./src:/var/www/html
+    ports:
+      - ${WEB_PORT}:80
+      
+volumes:
+  smash-sqlite:
+    driver: local

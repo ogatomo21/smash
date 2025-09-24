@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SMASH v1.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.4/css/bulma.min.css"
+        integrity="sha512-yh2RE0wZCVZeysGiqTwDTO/dKelCbS9bP2L94UvOFtl/FKXcNAje3Y2oBg/ZMZ3LS1sicYk4dYVGtDex75fvvA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500&family=Poppins:wght@400;500&display=swap"
+        rel="stylesheet">
+    <script src="/assets/main.js"></script>
+
+    <style>
+        body {
+            font-family: 'IBM Plex Sans JP', sans-serif;
+        }
+
+        .clock-container {
+            font-size: 6rem;
+            line-height: 1;
+            text-align: center;
+            padding-right: 3rem;
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+        }
+
+        .date-container {
+            font-size: 2rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .weather-container {
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
+        #temperature {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+        }
+
+        .room-temperature-container,
+        .room-humidity-container {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app m-5">
+        <div class="columns">
+            <div class="column is-half">
+                <div class="box p-6 has-background-light">
+                    <div class="is-flex is-justify-content-center is-align-items-center is-flex-wrap-wrap has-text-centered">
+                        <div class="clock-container">
+                            <span id="clock">
+                                --:--
+                            </span>
+                        </div>
+                        <div
+                            class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center has-text-centered is-flex-wrap-wrap">
+                            <div class="date-container">
+                                <span id="date-ymd">
+                                    2024年01月01日(月)
+                                </span>
+                            </div>
+                            <div
+                                class="weather-container is-flex is-align-items-center is-justify-content-center is-flex-wrap-wrap has-text-centered">
+                                <img id="weather-img" src="">
+                                <span id="weather" class="ml-0 mr-6">loading...</span>
+                                <!-- <span class="icon">
+                                    <i class="fa-solid fa-temperature-three-quarters has-text-danger"></i>
+                                </span>
+                                <span id="temperature" class="ml-3">25.0℃</span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box has-background-light p-5">
+                    <div class="is-flex is-justify-content-center is-align-items-center is-flex-wrap-wrap">
+                        <div class="room-temperature-container mr-6">
+                            <span class="icon">
+                                <i class="fa-solid fa-temperature-three-quarters has-text-danger"></i>
+                            </span>
+                            <span id="room-temperature" class="ml-3">25.0℃</span>
+                        </div>
+                        <div class="room-humidity-container">
+                            <span class="icon">
+                                <i class="fa-solid fa-droplet has-text-info"></i>
+                            </span>
+                            <span id="room-humidity" class="ml-3">50%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box p-5">
+                    <h2 class="title">ロック操作</h2>
+                    <div class="buttons are-medium">
+                        <button id="lock-lock" class="button is-link">🔒️施錠(ロック)</button>
+                        <button id="lock-unlock" class="button is-danger has-text-white">🔓️解錠(アンロック)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-half">
+                <!-- <div class="box p-5">
+                    <h2 class="title">シーン操作(ショートカット)</h2>
+                    Comming Soon...
+                </div> -->
+                <div class="box p-5">
+                    <h2 class="title">エアコン</h2>
+                    <div class="buttons">
+                        <button id="ac-cool" class="button is-link is-large">⚡️冷房28℃</button>
+                        <button id="ac-heat" class="button is-link is-large">⚡️暖房20℃</button>
+                        <button id="ac-off" class="button is-light is-large">🔌エアコンOFF</button>
+                    </div>
+                </div>
+                <div class="box p-5">
+                    <h2 class="title">照明</h2>
+                    <div class="buttons">
+                        <button id="light-on" class="button is-link is-large">💡照明ON</button>
+                        <button id="light-off" class="button is-light is-large">🔌照明OFF</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
