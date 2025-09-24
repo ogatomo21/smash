@@ -1,5 +1,7 @@
 # 簡易スマートホームダッシュボード SMASH (SMArthome daSHboard)
 
+![スクリーンショット](/screenshot1.png)
+
 ## 概要
 
 SMASHは、PHPとSQLite、SwitchBot API、気象庁API(非公式)で構築された家庭向けの簡易スマートホームダッシュボードです。
