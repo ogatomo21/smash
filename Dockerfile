@@ -5,9 +5,11 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo_sqlite mbstring \
     && a2enmod rewrite
 
-COPY php.ini /usr/local/etc/php/
-COPY init.sql /docker-entrypoint-initdb.d/init.sql
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY . /var/www/html
+
+COPY docker/php.ini /usr/local/etc/php/
+COPY docker/init.sql /docker-entrypoint-initdb.d/init.sql
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["entrypoint.sh"]

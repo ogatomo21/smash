@@ -19,10 +19,8 @@ services:
       TZ: Asia/Tokyo
     volumes:
       - smash-sqlite:/var/www/db/
-      - ./src:/var/www/html
     ports:
       - ${WEB_PORT}:80
-      
 volumes:
   smash-sqlite:
     driver: local
