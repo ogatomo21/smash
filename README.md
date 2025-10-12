@@ -36,6 +36,7 @@ docker compose up -d
 - ユーザー認証が必要な場合は各自で `.htaccess` を設定するなどのご対応をお願いします。
 - スマホ等の小さい画面ではUIが崩れます。タブレットやPCでご利用ください。というかスマホならアプリのほうが断然使いやすいのでそちらを推奨します。
 - 天気情報取得に気象庁の非公式API(公式サイトだがサービス稼働保証なし)を使用しているため、取得ができなくなった場合等で気象庁に問い合わせるのはご遠慮ください。(GitHubのIssueまでお願いします)
+- シーン実行機能について、デフォルトではシーン名の先端に「_(アンダーバー)」がついている場合は表示しない設定になっております。アンダーバー付きの項目も表示させたい場合は `src/assets/main.js` 内の `if(scene.sceneName.startsWith('_')) return;` という行を消すかコメントアウトしてください。
 
 ## Special Thanks
 
@@ -44,7 +45,7 @@ docker compose up -d
 - [Bulma](https://bulma.io/)
 - [Font Awesome](https://fontawesome.com/)
 - [IBM Plex Sans JP](https://fonts.google.com/specimen/IBM+Plex+Sans+JP)
-- [Poppins](https://fonts.google.com/specimen/Poppins)
+- [Jost](https://fonts.google.com/specimen/Jost)
 - [気象庁 Webサイト](https://www.jma.go.jp/jma/index.html)
 
 ## ライセンス
