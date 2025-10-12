@@ -1,6 +1,6 @@
 services:
   php:
-    build: ./docker/
+    build: .
     container_name: smash_php
     environment:
       SQLITE_PATH: ${SQLITE_PATH}

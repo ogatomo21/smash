@@ -49,6 +49,34 @@ function sbDevices($credential) {
     return json_decode($response, true);
 }
 
+function sbScenes($credential) {
+    $url = 'https://api.switch-bot.com/v1.1/scenes';
+
+    $headers = sbAuth($credential);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return json_decode($response, true);
+}
+
+function sbSceneExecute($credential, $sceneId) {
+    $url = 'https://api.switch-bot.com/v1.1/scenes/' . $sceneId . '/execute';
+
+    $headers = sbAuth($credential);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_POST, true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    return json_decode($response, true);
+}
+
 function sbDeviceStatus($credential, $deviceId) {
     $url = 'https://api.switch-bot.com/v1.1/devices/' . $deviceId . '/status';
     

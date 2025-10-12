@@ -27,11 +27,14 @@ if($data === null) {
     exit();
 }
 
+$weatherText = $data[0]['timeSeries'][0]['areas'][0]['weathers'][0];
+$weatherText = preg_replace('/　.*$/u', '', $weatherText);
+
 $weatherImageBaseURL = "https://www.jma.go.jp/bosai/forecast/img/";
 $res = array(
     'publishingOffice' => $data[0]['publishingOffice'],
     'areaCode' => $areaCode,
-    'weather_text' => $data[0]['timeSeries'][0]['areas'][0]['weathers'][0],
+    'weather_text' => $weatherText,
     'weather_code' => $data[0]['timeSeries'][0]['areas'][0]['weatherCodes'][0],
     'weather_image' => $weatherImageBaseURL . $data[0]['timeSeries'][0]['areas'][0]['weatherCodes'][0] . '.svg',
 );

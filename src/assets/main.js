@@ -32,7 +32,7 @@ const getSBTemperature = async (temperature, humidity) => {
     const res = await fetch(url);
     const data = await res.json();
     console.log(data);
-    temperature.textContent = data.temperature + '℃';
+    temperature.textContent = data.temperature + '°C';
     humidity.textContent = data.humidity + '%';
 }
 
@@ -65,7 +65,47 @@ const sendSBCommand = async (device, action, button) => {
     }, 2000);
 };
 
+const executeSBScene = async (sceneId, button) => {
+    const url = `/api/scenes.php?id=${sceneId}`;
+    const beforeText = button.textContent;
 
+    button.disabled = true;
+    button.classList.add('is-loading');
+
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        console.log(data);
+
+        button.classList.remove('is-loading');
+        if(data.message === 'success'){
+            button.textContent = '✅️Success!';
+        } else {
+            button.textContent = '❌Failed';
+        }
+    } catch (e) {
+        console.error(e);
+        button.textContent = '❌Error';
+    }
+
+    setTimeout(() => {
+        button.textContent = beforeText;
+        button.disabled = false;
+    }, 2000);
+};
+
+function idToHsl(id) {
+    let hash = 0;
+    let s = 80;
+    let l = 95;
+    for (let i = 0; i < id.length; i++) {
+        hash = id.charCodeAt(i) + ((hash << 5) - hash);
+        hash |= 0; // 32bit整数に収める
+    }
+
+    const h = Math.abs(hash) % 360; // 0〜359度の色相
+    return `hsl(${h}, ${s}%, ${l}%)`;
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -102,4 +142,22 @@ document.addEventListener('DOMContentLoaded', () => {
     acOff.addEventListener('click', sendSBCommand.bind(this, 'ac', 'turnOff', acOff));
     lightOn.addEventListener('click', sendSBCommand.bind(this, 'light', 'turnOn', lightOn));
     lightOff.addEventListener('click', sendSBCommand.bind(this, 'light', 'turnOff', lightOff));
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const scenesContainer = document.getElementById('scenes');
+    const url = '/api/scenes.php';
+    const res = await (await fetch(url)).json();
+    console.log(res);
+    scenesContainer.innerHTML = '';
+    res.body.forEach(scene => {
+        if(scene.sceneName.startsWith('_')) return;
+        const button = document.createElement('button');
+        button.className = 'button is-large';
+        button.style.color = '#333333';
+        button.style.backgroundColor = idToHsl(scene.sceneId);
+        button.textContent = scene.sceneName;
+        button.addEventListener('click', executeSBScene.bind(this, scene.sceneId, button));
+        scenesContainer.appendChild(button);
+    });
 });

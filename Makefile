@@ -20,6 +20,10 @@ up:
 	cd $(WOKR_DIR) \
 	&& docker compose up -d
 
+.PHONY: dev
+dev:
+	cd $(WOKR_DIR) \
+	&& docker compose -f compose.dev.yml up -d
 
 # アプリの停止
 .PHONY: down
