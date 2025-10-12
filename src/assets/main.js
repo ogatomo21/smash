@@ -142,6 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
     acOff.addEventListener('click', sendSBCommand.bind(this, 'ac', 'turnOff', acOff));
     lightOn.addEventListener('click', sendSBCommand.bind(this, 'light', 'turnOn', lightOn));
     lightOff.addEventListener('click', sendSBCommand.bind(this, 'light', 'turnOff', lightOff));
+
+    setTimeout(() => {
+        document.location.reload();
+    }, 30 * 60 * 1000); // 30 min
 });
 
 document.addEventListener('DOMContentLoaded', async () => {

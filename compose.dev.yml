@@ -6,6 +6,10 @@ services:
     container_name: smash_php_dev
     environment:
       SQLITE_PATH: ${SQLITE_PATH}
+      DEFAULT_COLOR_MODE: ${DEFAULT_COLOR_MODE}
+      AUTO_DARK_MODE: ${AUTO_DARK_MODE}
+      DARK_START_HOUR: ${DARK_START_HOUR}
+      DARK_END_HOUR: ${DARK_END_HOUR}
       JMA_AREA_CODE: ${JMA_AREA_CODE}
       SB_API_TOKEN: ${SB_API_TOKEN}
       SB_API_SECRET: ${SB_API_SECRET}

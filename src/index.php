@@ -1,10 +1,75 @@
+<?php
+$_SMASH_VERSION = '1.2';
+?>
 <!DOCTYPE html>
-<html lang="ja">
+<?php
+function defaultMode()
+{
+    if (getenv('AUTO_DARK_MODE') === 'true') {
+        $hour = date('H');
+        $startHour = intval(getenv('DARK_START_HOUR'));
+        $endHour = intval(getenv('DARK_END_HOUR'));
+        if ($startHour < $endHour) {
+            if ($hour >= $startHour && $hour < $endHour) {
+                return '<html lang="ja" data-theme="dark">';
+            } else {
+                if (getenv('DEFAULT_COLOR_MODE') == "dark") {
+                    return '<html lang="ja" data-theme="dark">';
+                } elseif (getenv('DEFAULT_COLOR_MODE') == "light") {
+                    return '<html lang="ja" data-theme="light">';
+                } elseif (getenv('DEFAULT_COLOR_MODE') == "auto") {
+                    return '<html lang="ja">';
+                } else {
+                    return '<html lang="ja">';
+                }
+            }
+        } else {
+            if ($hour >= $startHour || $hour < $endHour) {
+                return '<html lang="ja" data-theme="dark">';
+            } else {
+                if (getenv('DEFAULT_COLOR_MODE') == "dark") {
+                    return '<html lang="ja" data-theme="dark">';
+                } elseif (getenv('DEFAULT_COLOR_MODE') == "light") {
+                    return '<html lang="ja" data-theme="light">';
+                } elseif (getenv('DEFAULT_COLOR_MODE') == "auto") {
+                    return '<html lang="ja">';
+                } else {
+                    return '<html lang="ja">';
+                }
+            }
+        }
+    } else {
+        if (getenv('DEFAULT_COLOR_MODE') == "dark") {
+            return '<html lang="ja" data-theme="dark">';
+        } elseif (getenv('DEFAULT_COLOR_MODE') == "light") {
+            return '<html lang="ja" data-theme="light">';
+        } elseif (getenv('DEFAULT_COLOR_MODE') == "auto") {
+            return '<html lang="ja">';
+        } else {
+            return '<html lang="ja">';
+        }
+    }
+}
+if (isset($_GET["mode"])) {
+    $mode = $_GET["mode"];
+    if ($mode == "dark") {
+        echo '<html lang="ja" data-theme="dark">';
+    } elseif ($mode == "light") {
+        echo '<html lang="ja" data-theme="light">';
+    } elseif ($mode == "auto") {
+        echo '<html lang="ja">';
+    } else {
+        echo defaultMode();
+    }
+} else {
+    echo defaultMode();
+}
+?>
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SMASH v1.0</title>
+    <title>SMASH v<?php echo htmlspecialchars($_SMASH_VERSION); ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.4/css/bulma.min.css"
         integrity="sha512-yh2RE0wZCVZeysGiqTwDTO/dKelCbS9bP2L94UvOFtl/FKXcNAje3Y2oBg/ZMZ3LS1sicYk4dYVGtDex75fvvA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
