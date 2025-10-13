@@ -30,13 +30,21 @@ if($data === null) {
 $weatherText = $data[0]['timeSeries'][0]['areas'][0]['weathers'][0];
 $weatherText = preg_replace('/　.*$/u', '', $weatherText);
 
+$weatherCode = $data[0]['timeSeries'][0]['areas'][0]['weatherCodes'][0];
+
 $weatherImageBaseURL = "https://www.jma.go.jp/bosai/forecast/img/";
+if($weatherCode == "211"){
+    $weatherImage = $weatherImageBaseURL . "210" . '.svg';
+}else{
+    $weatherImage = $weatherImageBaseURL . $weatherCode . '.svg';
+}
+
 $res = array(
     'publishingOffice' => $data[0]['publishingOffice'],
     'areaCode' => $areaCode,
     'weather_text' => $weatherText,
     'weather_code' => $data[0]['timeSeries'][0]['areas'][0]['weatherCodes'][0],
-    'weather_image' => $weatherImageBaseURL . $data[0]['timeSeries'][0]['areas'][0]['weatherCodes'][0] . '.svg',
+    'weather_image' => $weatherImage,
 );
 header('Content-Type: application/json; charset=utf8');
 echo json_encode($res, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
