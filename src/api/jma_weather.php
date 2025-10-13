@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../private/func/weather.php';
 
 $areaCode = getenv('JMA_AREA_CODE');
 
@@ -26,11 +27,9 @@ if($data === null) {
     echo json_encode($res, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     exit();
 }
-
-$weatherText = $data[0]['timeSeries'][0]['areas'][0]['weathers'][0];
-$weatherText = preg_replace('/　.*$/u', '', $weatherText);
-
 $weatherCode = $data[0]['timeSeries'][0]['areas'][0]['weatherCodes'][0];
+
+$weatherText = code2weather($weatherCode);
 
 $weatherImageBaseURL = "https://www.jma.go.jp/bosai/forecast/img/";
 if($weatherCode == "211"){
