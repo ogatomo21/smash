@@ -1,5 +1,5 @@
 <?php
-$_SMASH_VERSION = '1.2';
+$_SMASH_VERSION = '1.3';
 ?>
 <!DOCTYPE html>
 <?php
