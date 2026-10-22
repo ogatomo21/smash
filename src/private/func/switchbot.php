@@ -44,7 +44,6 @@ function sbDevices($credential) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     $response = curl_exec($ch);
-    curl_close($ch);
 
     return json_decode($response, true);
 }
@@ -58,7 +57,6 @@ function sbScenes($credential) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     $response = curl_exec($ch);
-    curl_close($ch);
 
     return json_decode($response, true);
 }
@@ -73,7 +71,6 @@ function sbSceneExecute($credential, $sceneId) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_POST, true);
     $response = curl_exec($ch);
-    curl_close($ch);
     return json_decode($response, true);
 }
 
@@ -86,7 +83,6 @@ function sbDeviceStatus($credential, $deviceId) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     $response = curl_exec($ch);
-    curl_close($ch);
 
     return json_decode($response, true);
 }
@@ -109,7 +105,6 @@ function sbDeviceCommand($credential, $deviceId, $command, $parameter = 'default
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
     $response = curl_exec($ch);
-    curl_close($ch);
 
     return json_decode($response, true);
 }
